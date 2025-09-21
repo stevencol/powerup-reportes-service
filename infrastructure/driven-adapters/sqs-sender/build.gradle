@@ -1,0 +1,15 @@
+dependencies {
+    implementation project(':model')
+    implementation project(':exceptions')
+    implementation project(':constants')
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    implementation 'org.apache.logging.log4j:log4j-api'
+    implementation 'software.amazon.awssdk:sqs'
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs:3.1.1'
+    implementation("com.google.code.gson:gson:2.7")
+    implementation 'software.amazon.awssdk:sqs'
+    implementation 'software.amazon.awssdk:lambda:2.20.29'
+    implementation 'software.amazon.awssdk:auth:2.20.29'
+
+
+}

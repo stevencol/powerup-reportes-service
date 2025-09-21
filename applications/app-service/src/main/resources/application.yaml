@@ -1,0 +1,59 @@
+server:
+  port: 8083
+spring:
+  profiles:
+    active: "dev"
+  application:
+    name: "reportes"
+  devtools:
+    add-properties: false
+    restart:
+      enabled: false
+
+aws:
+  region: "us-east-2"
+  lambda:
+    access-key: "${AWS_ACCESS_KEY_ID}"
+    secret-key: "${AWS_SECRET_ACCESS_KEY}"
+    region: us-east-2
+    lambda-arn: "${AWS_LAMBDA_ARN}"
+  adapter:
+    sqs:
+      sender:
+        status:
+          region: "us-east-2"
+          queueUrl: "${SQS_SENDER_STATUS}"
+        report:
+          region: "us-east-2"
+          queueUrl: "${SQS_SENDER_REPORT}"
+      save:
+        report:
+          region: "us-east-2"
+          queueUrl: "${SQS_SAVE_REPORT}"
+          queueName: "${SQS_NAME_SAVE_REPORT}"
+          #endpoint: "http://localhost:4566"
+
+      endeudamiento:
+        region: "us-east-2"
+        queueUrl: "${SQS_ENDEUDAMIENTO}"
+      #endpoint: "http://localhost:4566"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+cors:
+  allowed-origins: "http://localhost:4200,http://localhost:8080"
+
+clients:
+  users-service:
+    url: "${USERS_SERVICE_URL}"
+jwt:
+  system:
+    key: "${JWT_SYSTEM_KEY}"
+    secret: "${JWT_AUTH_SECRET}"

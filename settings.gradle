@@ -1,0 +1,39 @@
+pluginManagement {
+    repositories {
+        //mavenLocal()
+        //maven { url = '...' }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+buildCache {
+    local {
+        directory = new File(rootDir, 'build-cache')
+    }
+}
+
+rootProject.name = 'reportes'
+
+include ':app-service'
+include ':model'
+include ':usecase'
+project(':app-service').projectDir = file('./applications/app-service')
+project(':model').projectDir = file('./domain/model')
+project(':usecase').projectDir = file('./domain/usecase')
+include ':metrics'
+project(':metrics').projectDir = file('./infrastructure/helpers/metrics')
+include ':dynamo-db'
+project(':dynamo-db').projectDir = file('./infrastructure/driven-adapters/dynamo-db')
+include ':sqs-sender'
+project(':sqs-sender').projectDir = file('./infrastructure/driven-adapters/sqs-sender')
+include ':reactive-web'
+project(':reactive-web').projectDir = file('./infrastructure/entry-points/reactive-web')
+include ':exceptions'
+include ':constants'
+project(':exceptions').projectDir = file('./common/exceptions')
+project(':constants').projectDir = file('./common/constants')
+include ':feign-authentication'
+project(':feign-authentication').projectDir = file('./infrastructure/driven-adapters/feign-authentication')
+include ':scheduled'
+project(':scheduled').projectDir = file('./infrastructure/driven-adapters/scheduled')
