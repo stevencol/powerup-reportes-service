@@ -38,7 +38,7 @@ public class CorsConfig {
                                 "/docs",
                                 "/docs/**",
                                 "/v3/api-docs",
-                                "/v3/api-docs/**", "/webjars/**").permitAll()
+                                "/v3/api-docs/**", "/webjars/**", "/actuator/health").permitAll()
                         .anyExchange().authenticated()
                 ).addFilterBefore(authFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .exceptionHandling(exceptions ->
